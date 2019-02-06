@@ -79,6 +79,11 @@ module.exports =
   Converts a Gregorian date to Jalaali.
 */
 function toJalaali(gy, gm, gd) {
+  if (Object.prototype.toString.call(gy) === '[object Date]') {
+    gd = gy.getDate()
+    gm = gy.getMonth() + 1
+    gy = gy.getFullYear()
+  }
   return d2j(g2d(gy, gm, gd))
 }
 
@@ -821,7 +826,6 @@ function jWeekOfYear(mom, firstDayOfWeek, firstDayOfWeekOfYear) {
 
 function makeMoment(input, format, lang, strict, utc) {
   if (typeof lang === 'boolean') {
-    utc = strict
     strict = lang
     lang = undefined
   }
@@ -863,7 +867,7 @@ function makeMoment(input, format, lang, strict, utc) {
   m._jDiff = config._jDiff || 0
   jm = objectCreate(jMoment.fn)
   extend(jm, m)
-  if (strict && jm.isValid()) {
+  if (strict && format && jm.isValid()) {
     jm._isValid = jm.format(origFormat) === origInput
   }
   return jm
@@ -935,7 +939,7 @@ jMoment.fn.jMonth = function (input) {
     , g
   if (input != null) {
     if (typeof input === 'string') {
-      input = this.lang().jMonthsParse(input)
+      input = this.localeData().jMonthsParse(input)
       if (typeof input !== 'number')
         return this
     }
@@ -1090,8 +1094,8 @@ jMoment.jIsLeapYear = jalaali.isLeapJalaaliYear
 jMoment.loadPersian = function (args) {
   var usePersianDigits =  args !== undefined && args.hasOwnProperty('usePersianDigits') ? args.usePersianDigits : false
   var dialect =  args !== undefined && args.hasOwnProperty('dialect') ? args.dialect : 'persian'
-  moment.locale('fa', null)
-  moment.defineLocale('fa'
+  moment.locale('fa')
+  moment.updateLocale('fa'
   , { months: ('ژانویه_فوریه_مارس_آوریل_مه_ژوئن_ژوئیه_اوت_سپتامبر_اکتبر_نوامبر_دسامبر').split('_')
     , monthsShort: ('ژانویه_فوریه_مارس_آوریل_مه_ژوئن_ژوئیه_اوت_سپتامبر_اکتبر_نوامبر_دسامبر').split('_')
     , weekdays:

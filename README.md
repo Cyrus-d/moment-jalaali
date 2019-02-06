@@ -119,6 +119,17 @@ A library based on `moment-jalaali` for calculating holidays in Persian calendar
 
 Another calendar system plugin for `momentjs` is [moment-hijri](https://github.com/xsoh/moment-hijri) created by [@xsoh](https://github.com/xsoh).
 
+### vue-persian-datetime-picker
+
+[vue-persian-datetime-picker](https://github.com/talkhabi/vue-persian-datetime-picker) is a `vuejs` plugin to select jalali date and time, created by [@talkhabi](https://github.com/talkhabi).
+
+### react-native-general-calendars
+
+[react-native-general-calendars](https://github.com/rghorbani/react-native-general-calendars) is a `react-native` component with support of gregorian, jalaali and hijri calendar to selectand work with date and time, created by [@rghorbani](https://github.com/rghorbani).
+
+### imrc-datetime-picker
+[imrc-datetime-picker](https://github.com/smrsan76/imrc-datetime-picker) is a `react` component with support of gregorian and jalaali calendar in both english and persian (modern) languages to select and work with date and time, created by [@smrsan76](https://github.com/smrsan76).
+
 ## License
 
 MIT
